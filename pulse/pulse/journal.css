@@ -1,0 +1,189 @@
+/* General Styling */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F4F4F4;
+}
+
+/* Navigation Bar */
+.new-flex-container {
+    display: flex;
+    min-height: 3vw;
+    max-height: 3vw;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFDC7E;
+    padding: 2vw;
+    font-size: 2vw;
+    color: white;
+    text-align: center;
+}
+
+/* Home Link */
+.home-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 6vw;
+    height: 6vw;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 6vw;
+    height: 6vw;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect for Menu */
+.dropdown:hover .menu-logo {
+    transform: rotate(180deg) scale(1.1);
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #FFDC7E;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-content a {
+    color: #274F8C;
+    padding: 2vw;
+    text-decoration: none;
+    display: block;
+    font-size: 1.2vw;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #D76A4D;
+    color: white;
+}
+
+/* Quote Container */
+.quote-container {
+    display: flex;
+    min-height: 100px;
+    max-height: 100px;
+    justify-content: center;
+    align-items: center;
+    background-color: #26533F;
+    padding: 2vw;
+    font-size: 2vw;
+    color: white;
+    text-align: center;
+}
+
+/* Journal Container */
+.journal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.journal-container h2 {
+    font-size: 2rem;
+    color: #274F8C;
+}
+
+/* Notebook-Style Journal Entry */
+#journal-entry {
+    width: 100%;
+    height: 200px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    font-family: "Mynerve", cursive; /* Handwriting-style font */
+    border-radius: 5px;
+    line-height: 2.2rem; /* Space out lines like notebook paper */
+    background: repeating-linear-gradient(
+        white, 
+        white 38px, 
+        #d1d1d1 39px
+    ); /* Creates lined paper effect */
+    border-left: 3px solid red; /* Notebook margin line */
+    resize: none;
+}
+
+#save-entry {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #274F8C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#save-entry:hover {
+    background-color: #1a365f;
+}
+
+#saved-entries {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.delete-entry {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #D76A4D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.delete-entry:hover {
+    background-color: #b65c40;
+}

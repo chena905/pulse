@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariel's Waste Sorting Game</title>
+    <!-- Link to Google Fonts for Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* Change font to Poppins */
+            text-align: center;
+            background-color: #fffbf1;
+            margin: 0;
+            padding-bottom: 50px;
+        }
+        .game-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .bin {
+            width: 200px;
+            min-height: 250px;
+            margin: 20px;
+            padding: 10px;
+            border: 2px dashed #ff69b4;
+            background-color: #fff0f5;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+        .bin h3 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+        .item {
+            width: 120px;
+            padding: 10px;
+            margin: 5px;
+            background-color: #fff;
+            border: 2px solid #ffb6c1;
+            border-radius: 8px;
+            cursor: grab;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .item:hover {
+            background-color: #ffb6c1;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            font-size: 14px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+        }
+
+        footer .left, footer .right {
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            max-width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="color: #ff69b4;">🌸 Help Ariel Sort the Garbage! 🌸</h1>
+    <p>Drag the waste items into the correct bin.</p>
+
+    <div class="game-container">
+        <div class="bin" id="recycle" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>♻️ Recycle</h3>
+        </div>
+        <div class="bin" id="landfill" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>🗑️ Landfill</h3>
+        </div>
+        <div class="bin" id="compost" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>🌱 Compost</h3>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item1">🛁 Shower curtain</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item2">📦 Pokemon blind box packaging</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item3">💄 Makeup packaging</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item4">🧩 Lego paper packaging</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item5">🧳 Lego plastic packaging</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item6">🍜 Ding Tai Fung food packaging</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item7">🥒 ZipLoc Packaging</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item8">🍱 ZipLoc bag</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item9">🛍️ Paper bag</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item10">🍏 Apple skin</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item11">🍹 Joe & the Juice cup holder</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item12">🥤 Joe & the Juice cup</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item13">🥤 Joe & the Juice straw</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item14">📦 Bubble wrap</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item15">🍌 Banana peel</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item16">🥤 Bubble tea cup</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item17">🥤 Bubble tea straw</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item18">🍣 Sushi takeout container</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item19">🥢 Sushi chopsticks wrapper</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item20">🧻 Napkin</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item21">🍬 Candy wrapper</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item22">🥶 Iced coffee cup</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item23">🍵 Coffee lid</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item24">📓 Notebook</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item25">🖊️ Pen packaging</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item26">🍲 Rice bowl takeout container</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item27">🍚 Rice bowl paper bag</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item28">🥡 Soy sauce packet</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item29">🧾 Grocery receipt</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item30">🥑 Avocado peel</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item31">🍟 Chip bag</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item32">🥫 Aluminum can</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item33">📦 LaCroix box</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item34">🍴 Used Plastic fork</div>
+        <div class="item" draggable="true" ondragstart="drag(event)" id="item35">🥗 Salad container</div>
+    </div>
+
+    <footer>
+        <div class="left">Ariel Chen</div>
+        <div class="right">Sustainable Systems: Love your garbage assignment</div>
+    </footer>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            let data = event.dataTransfer.getData("text");
+            let item = document.getElementById(data);
+            let binId = event.target.id;
+
+            if (
+    (binId === "recycle" && (item.id === "item1" || item.id === "item2" || item.id === "item3" || item.id === "item4" || item.id === "item5" || item.id === "item6" || item.id === "item7" || item.id === "item8" || item.id === "item9" || item.id === "item11" || item.id === "item12" || item.id === "item13" || item.id === "item14" || item.id === "item16" || item.id === "item18" || item.id === "item19" || item.id === "item22" || item.id === "item23" || item.id === "item24" || item.id === "item25" || item.id === "item26" || item.id === "item27" || item.id === "item32" || item.id === "item33" || item.id === "item35")) ||
+    (binId === "landfill" && (item.id === "item17" || item.id === "item21" || item.id === "item28" || item.id === "item29" || item.id === "item31" || item.id === "item34" || item.id === "item13" )) ||
+
+    (binId === "compost" && (item.id === "item10" || item.id === "item15" || item.id === "item20" || item.id === "item30"))
+) {
+                event.target.appendChild(item);
+                item.style.backgroundColor = "#c8e6c9";
+            } else {
+                item.style.backgroundColor = "#ffcccb";
+                setTimeout(() => {
+                    item.style.backgroundColor = "#fff";
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>

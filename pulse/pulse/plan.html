@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="plan.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="plan.js" defer></script>   
+    <title>Plan</title>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="new-flex-container">
+        <a href="home.html" class="home-link">
+            <img src="images/homepage.png" alt="Home" class="logo">
+        </a>
+    
+        <div class="dropdown">
+            <img src="images/more.png" alt="Menu" class="menu-logo">
+            <div class="dropdown-content">
+                <a href="journal.html">Journal</a>
+                <a href="sketch.html">Sketch</a>
+                <a href="plan.html">Plan</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Container -->
+    <div class="quote-container">
+        <p id="quote"></p>
+    </div>
+
+    <!-- Calendar and Todo List Section -->
+    <div id="calendar-container">
+        <div id="calendar"></div>
+        <div id="todo-container">
+            <h3 id="selected-date"></h3>
+            <textarea id="todo-list" placeholder="Write your to-do list here..."></textarea>
+            <button id="save-todo">Save To-Do</button>
+            <div id="saved-todos"></div>
+        </div>
+    </div>
+
+</body>
+</html>

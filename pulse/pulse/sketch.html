@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="sketch.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">    
+    <title>Sketch</title>
+</head>
+<body>
+
+    <!-- New Flex Box Above Quote Container -->
+    <div class="new-flex-container">
+        <a href="home.html" class="home-link">
+            <img src="images/homepage.png" alt="Home" class="logo">
+        </a>
+    
+        <div class="dropdown">
+            <img src="images/more.png" alt="Menu" class="menu-logo">
+            <div class="dropdown-content">
+                <a href="journal.html">Journal</a>
+                <a href="sketch.html">Sketch</a>
+                <a href="plan.html">Plan</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Container -->
+    <div class="quote-container">
+        <p id="quote"></p>
+    </div>
+
+    <!-- New Blue Flex Box for Drawing Pad -->
+    <div class="blue-flex-box">
+        <div class="draw-container">
+            <canvas id="drawingCanvas"></canvas>
+
+            <!-- Drawing Controls (placed under the drawing pad) -->
+            <div class="draw-controls">
+                <input type="color" id="brushColor" value="#274F8C">
+                <input type="range" id="brushSize" min="1" max="20" value="8">
+                <button id="clearButton">Clear Canvas</button>
+                <button id="saveButton">Save Drawing</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quotes = [
+            "Be kind to yourself.",
+            "Make your happiness a priority.",
+            "Invest in your well-being.",
+            "You are enough.",
+            "Take a moment to breathe.",
+            "Prioritize your needs.",
+            "Listen to your body.",
+            "Practice self-compassion.",
+            "Recharge and renew.",
+            "Time for a digital detox.",
+            "A little self-care goes a long way."
+        ];
+
+        // Function to display a random quote
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+
+        // Set a random quote on page load
+        document.getElementById('quote').textContent = getRandomQuote();
+
+         // Drawing functionality
+         const canvas = document.getElementById("drawingCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Set the canvas width and height dynamically based on the container size
+        function resizeCanvas() {
+            const container = document.querySelector(".draw-container");
+            canvas.width = container.clientWidth - 40; // Adjust for padding
+            canvas.height = 400; // Fixed height
+        }
+
+        // Resize canvas on page load and window resize
+        window.addEventListener("load", resizeCanvas);
+        window.addEventListener("resize", resizeCanvas);
+
+        let drawing = false;
+
+        // Function to get the correct mouse/touch position relative to the canvas
+        function getPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: (e.clientX || e.touches[0].clientX) - rect.left,
+                y: (e.clientY || e.touches[0].clientY) - rect.top
+            };
+        }
+
+        // Start drawing
+        function startPosition(e) {
+            drawing = true;
+            const pos = getPosition(e);
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y); // Move to the starting point
+        }
+
+        // Draw while moving
+        function draw(e) {
+            if (!drawing) return;
+
+            const pos = getPosition(e);
+            ctx.lineTo(pos.x, pos.y); // Draw to the new position
+            ctx.stroke();
+        }
+
+        // Stop drawing
+        function endPosition() {
+            drawing = false;
+            ctx.beginPath(); // Start a new path for the next stroke
+        }
+
+        // Mouse event listeners
+        canvas.addEventListener("mousedown", startPosition);
+        canvas.addEventListener("mouseup", endPosition);
+        canvas.addEventListener("mousemove", draw);
+
+        // Touch event listeners
+        canvas.addEventListener("touchstart", (e) => {
+            e.preventDefault(); // Prevent scrolling
+            startPosition(e.touches[0]);
+        });
+        canvas.addEventListener("touchend", endPosition);
+        canvas.addEventListener("touchmove", (e) => {
+            e.preventDefault(); // Prevent scrolling
+            draw(e.touches[0]);
+        });
+
+        // Brush settings
+        ctx.lineWidth = 8; // Brush thickness
+        ctx.lineCap = "round"; // Round brush strokes
+        ctx.lineJoin = "round"; // Smooth line connections
+        ctx.strokeStyle = "#274F8C"; // Brush color
+
+        // Brush color picker
+        document.getElementById("brushColor").addEventListener("change", (e) => {
+            ctx.strokeStyle = e.target.value;
+        });
+
+        // Brush size slider
+        document.getElementById("brushSize").addEventListener("input", (e) => {
+            ctx.lineWidth = e.target.value;
+        });
+
+        // Clear canvas button
+        document.getElementById("clearButton").addEventListener("click", () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Save drawing button
+        document.getElementById("saveButton").addEventListener("click", () => {
+            const link = document.createElement("a");
+            link.download = "drawing.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    </script>
+
+</body>
+</html>

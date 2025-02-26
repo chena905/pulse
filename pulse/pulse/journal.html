@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="journal.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">    
+    <title>Journal</title>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="new-flex-container">
+        <a href="home.html" class="home-link">
+            <img src="images/homepage.png" alt="Home" class="logo">
+        </a>
+    
+        <div class="dropdown">
+            <img src="images/more.png" alt="Menu" class="menu-logo">
+            <div class="dropdown-content">
+                <a href="journal.html">Journal</a>
+                <a href="sketch.html">Sketch</a>
+                <a href="plan.html">Plan</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Container -->
+    <div class="quote-container">
+        <p id="quote"></p>
+    </div>
+
+    <!-- Journaling Section -->
+    <div class="journal-container">
+        <h2>Daily Journal</h2>
+        
+        <!-- Mood Selector -->
+        <select id="mood">
+            <option value="">Select Mood</option>
+            <option value="Happy">Happy</option>
+            <option value="Sad">Sad</option>
+            <option value="Angry">Angry</option>
+            <option value="Relaxed">Relaxed</option>
+            <option value="Excited">Excited</option>
+        </select>
+        
+        <!-- Journal Entry -->
+        <textarea id="journal-entry" placeholder="Write your thoughts here..."></textarea>
+        
+        <!-- Save Button -->
+        <button id="save-entry">Save</button>
+
+        <!-- Saved Entries -->
+        <div id="saved-entries"></div>
+    </div>
+
+    <script src="journal.js"></script>
+</body>
+</html>
